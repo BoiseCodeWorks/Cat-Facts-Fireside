@@ -1,7 +1,7 @@
 <template>
   <div class="Cat card-container border-0 col-4 p-2 bg-transparent text-light py-5">
     <div class=" row justify-content-center">
-      <div class="cat-image col-3 mr-0 pr-0 pl-4">
+      <div class="cat-image col-3 mr-0 pb-0">
         <img :src="state.catImage + indexProp" class="img-fluid rounded">
       </div>
       <div class="col-10 bg-primary rounded shadow-sm p-3" @click="getBigFact(state.fact.id)">
@@ -62,7 +62,6 @@ export default {
 }
 .cat-image{
   z-index: 10;
-  position: absolute;
-transform: translate(0vw, -7vh);
+transform: translate(0vw, 5px);
 }
 </style>
