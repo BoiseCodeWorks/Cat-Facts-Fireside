@@ -2,18 +2,18 @@
   <div class="Cat card-container border-0 col-4 p-2 bg-transparent text-light py-5">
     <div class=" row justify-content-center">
       <div class="cat-image col-3 mr-0 pb-0">
-        <img :src="state.catImage + indexProp" class="img-fluid rounded">
+        <img :src="catImage + indexProp" class="img-fluid rounded">
       </div>
-      <div class="col-10 bg-primary rounded shadow-sm p-3" @click="getBigFact(state.fact.id)">
+      <div class="col-10 bg-primary rounded shadow-sm p-3" @click="getBigFact(fact.id)">
         <div class="row">
           <h5 class="col-12 border-bottom pt-0 pb-1">
-            {{ state.fact.name }}
+            {{ fact.name }}
           </h5>
           <div class="col-12 p-2">
-            {{ state.fact.text }}
+            {{ fact.text }}
           </div>
           <div class="col-12">
-            <i v-for="(star, i) in state.fact.stars" :key="i" class="bi bi-star"></i>
+            <i v-for="star in fact.stars" class="bi bi-star"></i>
           </div>
         </div>
       </div>
@@ -25,14 +25,13 @@
 import { reactive, computed, onMounted } from 'vue'
 import { catService } from '../services/CatService'
 import { AppState } from '../AppState'
-import { useRouter } from 'vue-router'
 export default {
   name: 'CatComponent',
-  props: ['factProp', 'indexProp'],
-  setup(props) {
+  props: ['fact', 'index'],
+  setup() {
     const router = useRouter()
     const state = reactive({
-      fact: computed(() => props.factProp),
+      fact: computed(() => props.fact),
       catImage: ''
 
     })
@@ -42,7 +41,7 @@ export default {
       router.push({ path: '/facts/' + id })
     }
     function getUniqueCat() {
-      setTimeout(() => { state.catImage = 'https://thiscatdoesnotexist.com/?v= ' }, 1150 * props.indexProp - 1)
+      setTimeout(() => { state.catImage = 'https://thiscatdoesnotexist.com/?v= ' }, 1150 * props.index - 1)
     }
     onMounted(() => getUniqueCat())
     return { state, getBigFact, getUniqueCat }

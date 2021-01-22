@@ -5,7 +5,7 @@ import { catNameGenerator, generateId } from './utils'
 class CatService {
   async getFacts() {
     try {
-      const res = await api.get('/facts?limit=100')
+      const res = await api.get('limit=100')
       console.log('cat facts', res.data.data)
       AppState.facts = res.data.data.map(cat => new Cat(cat))
     } catch (err) {
@@ -34,7 +34,7 @@ class CatService {
   }
 }
 
-export const catService = new CatService()
+export const catsService = new CatService()
 
 // THE BELOW CLASS IS ONLY HERE TO SIMULATE OBJECTS FROM THE CATFACTS API AS OBJECTS FROM OUR DATABASE
 // CLASSES COULD BE UTILIZED IN A SIMILAR WAY TO SANITIZE INCOMING DATA
